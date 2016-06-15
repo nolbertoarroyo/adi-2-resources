@@ -1,31 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="200dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp">
 
-    <ImageView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom"
+            android:layout_margin="12dp"
+            android:text="General Assembly"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="12dp"
+            android:src="@drawable/logo" />
+    </FrameLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:src="@drawable/background_image"
-        android:scaleType="centerCrop" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="match_parent"
+            android:text="Follow"
+            android:textColor="#262626"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Add Message"
+            android:textColor="#262626"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:text="Close"
+            android:textColor="#262626"/>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/puppy"
+            android:src="@drawable/puppy"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            />
+        <TextView
+            android:id="@+id/title"
+            android:layout_toRightOf="@+id/puppy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is the title"
+            android:textSize="35dp"/>
+        <TextView
+            android:layout_toRightOf="@+id/puppy"
+            android:layout_below="@+id/title"
+            android:id="@+id/subTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is subtitle"
+            android:textSize="23dp"/>
+        <TextView
+            android:id="@+id/text"
+            android:layout_toRightOf="@+id/puppy"
+            android:layout_below="@+id/subTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="this is text from article"/>
+
+    </RelativeLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="General Assembly"
-        android:layout_gravity="left|bottom"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:layout_margin="12dp" />
+        android:text="Bogut is a secondary contributor for the defending champions. He averaged 5.4 points and seven rebounds per game during the regular season while playing 20.7 minutes per contest.
 
-    <ImageView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_gravity="bottom|right"
-        android:src="@drawable/logo"
-        android:layout_margin="12dp" />
+The 31-year-old Utah product accumulated an extensive injury history during the middle portion of his career. He's held up better in recent years, playing at least 67 games in each of the last three seasons. He has missed time with various minor ailments, including a rib issue and a strained toe this year. He also dealt with an adductor strain during this playoff run."
+        />
 
-</FrameLayout>
+
+</LinearLayout>
