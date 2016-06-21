@@ -21,8 +21,75 @@ import java.util.ArrayList;
  * animal sound ( i.e. cow says moo ).
  */
 public class CustomBaseAdapter extends BaseAdapter {
+    private ArrayList<Animal> animals;
+    private Context context;
+    private ViewHolder viewHolder;
+
+    public CustomBaseAdapter(ArrayList<Animal> animals, Context context) {
+        this.animals = animals;
+        this.context = context;
+    }
+
+
+
+    @Override
+    public int getCount() {
+        return 0;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null){
+            convertView= LayoutInflater.from(context).inflate(R.layout.list_item,parent,false);
+            viewHolder = new ViewHolder(convertView);}
+        else{
+            viewHolder = (ViewHolder)convertView.getTag();
+
+        }
+
+
+
+        final Animal currentAnimal =animals.get(position);
+
+        viewHolder.firstTextView.setText(currentAnimal.getName());
+        viewHolder.secondTextView.setText(currentAnimal.getSound());
+
+        final String toastText = currentAnimal.getName() + " says: "+ currentAnimal.getSound();
+
+        viewHolder.button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        return convertView;
+    }
+    public class ViewHolder{
+        TextView firstTextView;
+        TextView secondTextView;
+        Button button1;
+
+        public ViewHolder(View convertView){
+            TextView firstTextView = (TextView)convertView.findViewById(R.id.list_item_tv_first);
+            TextView secondTextView = (TextView)convertView.findViewById(R.id.list_item_tv_second);
+            Button button1 = (Button)convertView.findViewById(R.id.list_item_button);
+        }
+    }
 
     // TODO: implement the rest of the CustomBaseAdapter class
+
 
     // hint: Create constructor first. Implement 4 methods next.
 
