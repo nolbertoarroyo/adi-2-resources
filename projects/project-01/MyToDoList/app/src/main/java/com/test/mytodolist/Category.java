@@ -10,8 +10,9 @@ public class Category {
     private String description;
     private ArrayList<String> items;
 
-    public Category(String name) {
+    public Category(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 
     public String getName() {
