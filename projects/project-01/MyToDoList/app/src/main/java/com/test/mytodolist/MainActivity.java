@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     private ListView homeListView;
     private CustomAdapter customAdapter;
     public static final int CREATE_LIST_REQUEST_CODE =100;
+    public static final int GET_LIST_REQUEST_CODE = 107;
+    public static final String CURRENT_ITEM="current Item";
+    public static final String CURRENT_LIST="current list";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +58,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         homeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                
+                Intent updateIntent = new Intent(MainActivity.this,ListTasksActivity.class);
+                ArrayList<Item> currentList = new ArrayList<>(homeList.get(position).getItems());
+
+                Category currentCategory = homeList.get(position);
+                updateIntent.putExtra(CURRENT_ITEM,position);
+                updateIntent.putExtra(CURRENT_LIST,currentCategory);
+                startActivityForResult(updateIntent,GET_LIST_REQUEST_CODE);
             }
         });
 
@@ -83,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
             homeList.add(new Category(data.getStringExtra(AddNewListActivity.newListName),data.getStringExtra(AddNewListActivity.newListDescription)));
             customAdapter.notifyDataSetChanged();
          }
+
+        }
+        if (requestCode==GET_LIST_REQUEST_CODE){
+            if (resultCode==RESULT_OK){
+
+                Category category2 = (Category) data.getSerializableExtra(MainActivity.CURRENT_LIST);
+                int newPosition = data.getIntExtra(MainActivity.CURRENT_ITEM,-1);
+                homeList.get(newPosition).setItems(category2.getItems());
+                customAdapter.notifyDataSetChanged();
+            }
         }
     }
 

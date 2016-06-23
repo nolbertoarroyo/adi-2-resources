@@ -22,6 +22,10 @@
         <activity
             android:name=".ListTasksActivity"
             android:label="@string/title_activity_list_tasks"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddNewItemActivity"
+            android:label="@string/title_activity_add_new_item"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
