@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -54,6 +56,7 @@ public class SecondCustomAdapter extends BaseAdapter {
         viewHolder.itemDescription.setText(currentItem.getItemDescription());
         viewHolder.itemName.setText(currentItem.getItemName());
 
+
         //need onItemClickListener to go to other activity and show list
         return convertView;
     }
@@ -61,10 +64,12 @@ public class SecondCustomAdapter extends BaseAdapter {
     public class ViewHolder {
         TextView itemDescription;
         TextView itemName;
+        CheckBox completed;
 
         public ViewHolder(View convertView) {
             this.itemDescription = (TextView) convertView.findViewById(R.id.tv_item_discription);
             this.itemName = (TextView) convertView.findViewById(R.id.tv_item_name);
+            this.completed = (CheckBox) convertView.findViewById(R.id.done_check);
         }
     }
 }

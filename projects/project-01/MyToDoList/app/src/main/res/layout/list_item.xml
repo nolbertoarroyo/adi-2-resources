@@ -4,13 +4,11 @@
     android:layout_height="wrap_content">
     <TextView
         android:id="@+id/tv_name"
-        android:hint="List Name Goes Here"
         android:textSize="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tv_discription"
-        android:hint="list description goes here"
         android:layout_below="@id/tv_name"
         android:textSize="15dp"
         android:layout_width="match_parent"

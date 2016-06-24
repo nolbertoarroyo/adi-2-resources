@@ -9,12 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddNewItemActivity extends AppCompatActivity {
     Button createButton;
     EditText itemName, itemDescription;
     protected static String newItemName = "newItemName";
-    protected static String newItemDescription= "newItemDescription";
+    protected static String newItemDescription = "newItemDescription";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +23,9 @@ public class AddNewItemActivity extends AppCompatActivity {
         setContentView(R.layout.add_new_item);
 
         Intent recievedIntent = getIntent();
-        createButton= (Button)findViewById(R.id.create_item_button);
-        itemName= (EditText) findViewById(R.id.item_name);
-        itemDescription= (EditText)findViewById(R.id.item_description);
+        createButton = (Button) findViewById(R.id.create_item_button);
+        itemName = (EditText) findViewById(R.id.item_name);
+        itemDescription = (EditText) findViewById(R.id.item_description);
         createButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -32,16 +33,21 @@ public class AddNewItemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String name = itemName.getText().toString();
                 String description = itemDescription.getText().toString();
-                Intent intent = new Intent();
-                intent.putExtra(newItemName, name);
-                intent.putExtra(newItemDescription,description);
-                setResult(RESULT_OK, intent);
-                finish();
+                if (name.isEmpty() && description.isEmpty()) {
+                    Toast.makeText(AddNewItemActivity.this, "Please Fill Out", Toast.LENGTH_LONG).show();
+                } else if (name.isEmpty()) {
+                    Toast.makeText(AddNewItemActivity.this, "Please Fill Out Name", Toast.LENGTH_LONG).show();
+
+                } else {
+                    Intent intent = new Intent();
+                    intent.putExtra(newItemName, name);
+                    intent.putExtra(newItemDescription, description);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
             }
         });
 
 
-
     }
-
 }
