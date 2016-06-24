@@ -7,14 +7,26 @@
         android:id="@+id/tv_item_name"
         android:layout_below="@id/list_name"
         android:textSize="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"/>
     <TextView
         android:id="@+id/tv_item_discription"
         android:layout_below="@id/tv_item_name"
         android:textSize="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"/>
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDIT"
+        android:scaleX=".5"
+        android:scaleY=".5"
+        android:layout_toLeftOf="@+id/done_check"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_mode_edit_white_24dp"/>
     <CheckBox
         android:id="@+id/done_check"
         android:layout_alignParentRight="true"

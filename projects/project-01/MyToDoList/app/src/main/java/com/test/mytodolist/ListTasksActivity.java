@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +25,8 @@ public class ListTasksActivity extends AppCompatActivity {
     private SecondCustomAdapter secondCustomAdapter;
     Button backButton;
     public static final int CREATE_ITEM_REQUEST_CODE = 200;
+    public static final String EDIT_RETURN="edit return";
+
     Category category;
 
     @Override
@@ -30,21 +35,21 @@ public class ListTasksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_tasks);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        backButton = (Button)findViewById(R.id.back_button);
+        backButton = (Button) findViewById(R.id.back_button);
 
         itemListView = (ListView) findViewById(R.id.item_list_view);
         // populate list
         //recieving intent from MainActivity
         Intent recIntent = getIntent();
-        final int position= recIntent.getIntExtra(MainActivity.CURRENT_ITEM,-1);
-        TextView listName=(TextView)findViewById(R.id.list_name);
+        final int position = recIntent.getIntExtra(MainActivity.CURRENT_ITEM, -1);
+        TextView listName = (TextView) findViewById(R.id.list_name);
 
         category = (Category) recIntent.getSerializableExtra(MainActivity.CURRENT_LIST);
         listName.setText(category.getName());
         itemList = category.getItems();
 
-        if (itemList== null){
-            itemList= new ArrayList<>();
+        if (itemList == null) {
+            itemList = new ArrayList<>();
         }
         secondCustomAdapter = new SecondCustomAdapter(itemList, ListTasksActivity.this);
 
@@ -80,11 +85,11 @@ public class ListTasksActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent bIntent= new Intent();
+                Intent bIntent = new Intent();
 
                 category.setItems(itemList);
-                bIntent.putExtra(MainActivity.CURRENT_LIST,category);
-                bIntent.putExtra(MainActivity.CURRENT_ITEM,position);
+                bIntent.putExtra(MainActivity.CURRENT_LIST, category);
+                bIntent.putExtra(MainActivity.CURRENT_ITEM, position);
                 setResult(RESULT_OK, bIntent);
                 finish();
             }
@@ -97,13 +102,22 @@ public class ListTasksActivity extends AppCompatActivity {
         if (requestCode == CREATE_ITEM_REQUEST_CODE) {
 
             if (resultCode == RESULT_OK) {
-                itemList.add(new Item(data.getStringExtra(AddNewItemActivity.newItemName),data.getStringExtra(AddNewItemActivity.newItemDescription)));
+                itemList.add(new Item(data.getStringExtra(AddNewItemActivity.newItemName), data.getStringExtra(AddNewItemActivity.newItemDescription)));
                 secondCustomAdapter.notifyDataSetChanged();
+            }
+
+        }
+        if (requestCode == SecondCustomAdapter.CREATE_ITEM) {
+
+
+            if (resultCode == RESULT_OK) {
+                int pos = data.getIntExtra(EDIT_RETURN, -1);
+                itemList.set(pos, new Item(data.getStringExtra(AddNewItemActivity.newItemName), data.getStringExtra(AddNewItemActivity.newItemDescription)));
+                secondCustomAdapter.notifyDataSetChanged();
+
             }
         }
     }
-
-
 
 
 }

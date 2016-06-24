@@ -12,7 +12,7 @@
     tools:context="com.test.mytodolist.ListTasksActivity"
     tools:showIn="@layout/activity_list_tasks"
     android:orientation="vertical"
-    android:background="#9E9E9E"
+    android:background="@drawable/green_blue_gradient"
     >
 
     <TextView
@@ -29,7 +29,6 @@
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/back_button"
-        android:textAlignment="center"
         android:text="BACK"
         android:layout_gravity="left"
         android:layout_width="wrap_content"

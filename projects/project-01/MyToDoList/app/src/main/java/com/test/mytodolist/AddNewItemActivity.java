@@ -26,6 +26,8 @@ public class AddNewItemActivity extends AppCompatActivity {
         createButton = (Button) findViewById(R.id.create_item_button);
         itemName = (EditText) findViewById(R.id.item_name);
         itemDescription = (EditText) findViewById(R.id.item_description);
+        Intent editIntent = getIntent();
+        final int editChange =editIntent.getIntExtra(SecondCustomAdapter.RETURN_POSITION,-1);
         createButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -41,6 +43,7 @@ public class AddNewItemActivity extends AppCompatActivity {
                 } else {
                     Intent intent = new Intent();
                     intent.putExtra(newItemName, name);
+                    intent.putExtra(ListTasksActivity.EDIT_RETURN,editChange);
                     intent.putExtra(newItemDescription, description);
                     setResult(RESULT_OK, intent);
                     finish();
