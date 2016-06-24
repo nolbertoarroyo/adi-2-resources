@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent updateIntent = new Intent(MainActivity.this,ListTasksActivity.class);
-                ArrayList<Item> currentList = new ArrayList<>(homeList.get(position).getItems());
-
                 Category currentCategory = homeList.get(position);
                 updateIntent.putExtra(CURRENT_ITEM,position);
                 updateIntent.putExtra(CURRENT_LIST,currentCategory);

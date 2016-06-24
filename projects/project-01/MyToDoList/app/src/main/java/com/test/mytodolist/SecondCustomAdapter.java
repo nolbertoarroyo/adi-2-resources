@@ -57,7 +57,6 @@ public class SecondCustomAdapter extends BaseAdapter {
         viewHolder.itemName.setText(currentItem.getItemName());
 
 
-        //need onItemClickListener to go to other activity and show list
         return convertView;
     }
 
